@@ -2,6 +2,7 @@
 
 files=$(ls -1 | grep -E '\.(jpg|JPG|jpeg)$')
 
+IFS=$'\n'
 count=0
 for fname in $files; do
 	count=$(($count+1))
