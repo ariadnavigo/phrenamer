@@ -2,10 +2,12 @@
 
 files=$(ls -1 | grep -E '\.(jpg|JPG|jpeg)$')
 
-IFS=$'\n'
+IFS="
+"
+
 count=0
 for fname in $files; do
-	count=$(($count+1))
+	count=$((count+1))
 	newname="$(printf %02d $count).jpg"
 	! [ -f "$newname" ] && mv "$fname" "$newname"
 done
