@@ -1,6 +1,7 @@
 #!/bin/sh
 
-files=$(ls -1 | grep -E '\.(jpg|JPG|jpeg)$')
+[ "$1" ] && dir=$1 || dir="."
+files=$(ls -1 "$dir" | grep -E '\.(jpg|JPG|jpeg)$')
 
 IFS="
 "
@@ -9,6 +10,6 @@ count=0
 for fname in $files; do
 	count=$((count+1))
 	newname="$(printf %02d $count).jpg"
-	! [ -f "$newname" ] && mv "$fname" "$newname"
+	! [ -f "$dir/$newname" ] && mv "$dir/$fname" "$dir/$newname"
 done
 
