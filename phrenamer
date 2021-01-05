@@ -3,13 +3,15 @@
 [ "$1" ] && dir=$1 || dir="."
 files=$(find "$dir" -regextype posix-extended -regex '.*\.(jpg|JPG|jpeg)')
 
+digits=$(echo "$files" | wc -l | wc -c)
+zeroes=$((digits-1)) # minus '\0'
+
 IFS="
 "
-
 count=0
 for fname in $files; do
 	count=$((count+1))
-	newname="$dir/$(printf %02d $count).jpg"
+	newname="$dir/$(printf %0${zeroes}d $count).jpg"
 	! [ -f "$newname" ] && mv "$fname" "$newname"
 done
 
