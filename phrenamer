@@ -1,6 +1,17 @@
 #!/bin/sh
 
-[ "$1" ] && dir=$1 || dir="."
+usage() {
+	echo "usage: phrenamer [-h] [DIR]"
+	exit 1
+}
+
+case "$1" in
+	'-h') usage ;;
+	*) dir="$1" ;;
+esac
+
+! [ "$dir" ] && dir="."
+
 files=$(find "$dir" -regextype posix-extended -regex '.*\.(jpg|JPG|jpeg)')
 
 digits=$(echo "$files" | wc -l | wc -c)
