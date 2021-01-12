@@ -9,7 +9,7 @@ given directory into a numbered list, adding leading zeroes where needed (i.e.,
 phrenamer accepts this syntax:
 
 ```
-$ phrenamer [-dh] [DIR]
+$ phrenamer [-d] [DIR]
 ```
 
 The DIR argument refers to a directory path where the files to be renamed are 
@@ -20,8 +20,6 @@ phrenamer will look for files with the following extensions: .jpg, .JPG, .jpeg.
 It always changes the extension to .jpg.
 
 Use the -d option for a dry run that will *not* rename your files. 
-
-The -h option shows the usage screen.
 
 ## License
 

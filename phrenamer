@@ -2,7 +2,7 @@
 # See LICENSE file for copyright and license details.
 
 usage() {
-	echo "usage: phrenamer [-dh] [DIR]"
+	echo "usage: phrenamer [-d] [DIR]"
 	exit 1
 }
 
