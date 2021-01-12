@@ -15,7 +15,8 @@ esac
 [ "$dry" ] && dir="$2"
 ! [ "$dir" ] && dir="."
 
-files=$(find "$dir" -regextype posix-extended -regex '.*\.(jpg|JPG|jpeg)')
+files=$(find "$dir" -regextype posix-extended -regex '.*\.(jpg|JPG|jpeg)' \
+        | sort)
 
 digits=$(echo "$files" | wc -l | wc -c)
 zeroes=$((digits-1)) # minus '\0'
