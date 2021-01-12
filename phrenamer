@@ -7,8 +7,8 @@ usage() {
 }
 
 case "$1" in
-	'-h') usage ;;
 	'-d') dry="t" ;;
+	-*) usage ;;
 	*) dir="$1" ;;
 esac
 
