@@ -2,18 +2,18 @@
 # See LICENSE file for copyright and license details.
 
 usage() {
-	echo "usage: phrenamer [-d] [DIR]"
+	echo 'usage: phrenamer [-d] [DIR]'
 	exit 1
 }
 
 case "$1" in
-	-d) dry="t" ;;
+	-d) dry='t' ;;
 	-*) usage ;;
 	*) dir="$1" ;;
 esac
 
 [ "$dry" ] && dir="$2"
-! [ "$dir" ] && dir="."
+! [ "$dir" ] && dir=$(pwd)
 
 files=$(find "$dir" -regextype posix-extended -regex '.*\.(jpg|JPG|jpeg)' \
         | sort)
