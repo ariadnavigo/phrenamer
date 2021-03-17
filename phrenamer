@@ -24,7 +24,7 @@ zeroes=$((digits-1)) # minus '\0'
 IFS="
 "
 count=0
-for fname in $files; do
+for fname in "$files"; do
 	count=$((count+1))
 	newname="$dir/$(printf %0${zeroes}d $count).jpg"
 	echo "$fname -> $newname"
