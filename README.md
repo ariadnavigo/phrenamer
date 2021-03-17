@@ -9,10 +9,10 @@ given directory into a numbered list, adding leading zeroes where needed (i.e.,
 phrenamer accepts this syntax:
 
 ```
-$ phrenamer [-d] [DIR]
+$ phrenamer [-d] [dir]
 ```
 
-The DIR argument refers to a directory path where the files to be renamed are 
+The dir argument refers to a directory path where the files to be renamed are 
 located. If none is given, phrenamer will operate on the current working 
 directory.
 
