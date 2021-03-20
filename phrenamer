@@ -18,6 +18,8 @@ esac
 files=$(find "$dir" -regextype posix-extended -regex '.*\.(jpg|JPG|jpeg)' \
         | sort)
 
+! [ "$files" ] && exit 1
+
 digits=$(echo "$files" | wc -l | wc -c)
 zeroes=$((digits-1)) # minus '\0'
 
