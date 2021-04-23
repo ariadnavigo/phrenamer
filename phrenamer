@@ -22,13 +22,13 @@ files=$(find "$dir" -regextype posix-extended -regex '.*\.(jpg|JPG|jpeg)' \
 ! [ "$files" ] && exit 1
 
 digits=$(echo "$files" | wc -l | wc -c)
-zeroes=$((digits-1)) # minus '\0'
+zeroes=$((digits - 1)) # minus '\0'
 
 IFS="
 "
 count=0
 for fname in $files; do
-	count=$((count+1))
+	count=$((count + 1))
 	newname="$dir/$(printf %0${zeroes}d $count).jpg"
 	echo "$fname -> $newname"
 	! [ -f "$newname" ] && [ -z "$dry" ] && mv "$fname" "$newname"
