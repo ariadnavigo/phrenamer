@@ -18,7 +18,6 @@ dir="${1:-$(pwd)}"
 
 files=$(find "$dir" -regextype posix-extended -regex '.*\.(jpg|JPG|jpeg)' \
         | sort)
-
 ! [ "$files" ] && exit 1
 
 digits=$(echo "$files" | wc -l | wc -c)
