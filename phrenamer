@@ -6,14 +6,15 @@ usage() {
 	exit 1
 }
 
-case "$1" in
-	-d) dry='t' ;;
-	-*) usage ;;
-	*) dir="$1" ;;
-esac
+while getopts :d opt; do
+	case "$opt" in
+	d)	dry='t' ;;
+	?)	usage ;;
+	esac
+done
 
-[ "$dry" ] && dir="$2"
-! [ "$dir" ] && dir=$(pwd)
+shift $((OPTIND - 1))
+dir="${1:-$(pwd)}"
 
 files=$(find "$dir" -regextype posix-extended -regex '.*\.(jpg|JPG|jpeg)' \
         | sort)
