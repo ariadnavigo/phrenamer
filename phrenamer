@@ -1,9 +1,13 @@
 #!/bin/sh
 # See LICENSE file for copyright and license details.
 
-usage() {
-	echo 'usage: phrenamer [-d] [dir]' >&2
+die() {
+	echo "$1" >&2
 	exit 1
+}
+
+usage() {
+	die 'usage: phrenamer [-d] [dir]'
 }
 
 while getopts :d opt; do
@@ -18,7 +22,7 @@ dir="${1:-$(pwd)}"
 
 files=$(find "$dir" -regextype posix-extended -regex '.*\.(jpg|JPG|jpeg)' \
         | sort)
-! [ "$files" ] && exit 1
+! [ "$files" ] && die 'Error: no files to rename.'
 
 digits=$(echo "$files" | wc -l | wc -c)
 zeroes=$((digits - 1)) # minus '\0'
