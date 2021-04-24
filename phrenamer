@@ -24,8 +24,8 @@ files=$(find "$dir" -regextype posix-extended -regex '.*\.(jpg|JPG|jpeg)' \
         | sort)
 ! [ "$files" ] && die 'Error: no files to rename.'
 
-digits=$(echo "$files" | wc -l | wc -c)
-zeroes=$((digits - 1)) # minus '\0'
+filenum=$(echo "$files" | wc -l)
+zeroes=$((${#filenum} - 1)) # minus '\0'
 
 IFS="
 "
