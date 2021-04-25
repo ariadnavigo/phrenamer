@@ -20,7 +20,7 @@ done
 shift $((OPTIND - 1))
 dir="${1:-$(pwd)}"
 
-files=$(ls "${dir}/"*.jpg "${dir}"/*.jpeg "${dir}/"*.JPG)
+files=$(ls "${dir}/"*.jpg "${dir}"/*.jpeg "${dir}/"*.JPG 2> /dev/null)
 ! [ "$files" ] && die 'Error: no files to rename.'
 
 filenum=$(echo "$files" | wc -l)
