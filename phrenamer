@@ -20,8 +20,7 @@ done
 shift $((OPTIND - 1))
 dir="${1:-$(pwd)}"
 
-files=$(find "$dir" -regextype posix-extended -regex '.*\.(jpg|JPG|jpeg)' \
-        | sort)
+files=$(ls "${dir}/"*.jpg "${dir}"/*.jpeg "${dir}/"*.JPG)
 ! [ "$files" ] && die 'Error: no files to rename.'
 
 filenum=$(echo "$files" | wc -l)
