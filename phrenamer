@@ -31,7 +31,8 @@ IFS="
 count=0
 for fname in $files; do
 	count=$((count + 1))
-	newname=$(printf "%s/%0${zeroes}d.jpg" "${fname%/*}" "$count")
+	dirpart=$(dirname "$fname")
+	newname=$(printf "%s/%0${zeroes}d.jpg" "$dirpart" "$count")
 	echo "$fname -> $newname"
 	! [ -f "$newname" ] && [ -z "$dry" ] && mv "$fname" "$newname"
 done
