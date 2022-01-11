@@ -21,7 +21,9 @@ shift $((OPTIND - 1))
 dir="${1:-$(pwd)}"
 
 files=$(ls "${dir}/"*.jpg "${dir}"/*.jpeg "${dir}/"*.JPG 2> /dev/null)
-! [ "$files" ] && die 'Error: no files to rename.'
+if [ -z "$files" ]; then
+	die 'Error: no files to rename.'
+fi
 
 filenum=$(echo "$files" | wc -l)
 zeroes=$((${#filenum} - 1)) # minus '\0'
@@ -33,7 +35,11 @@ for fname in $files; do
 	count=$((count + 1))
 	dirpart=$(dirname "$fname")
 	newname=$(printf "%s/%0${zeroes}d.jpg" "$dirpart" "$count")
-	echo "$fname -> $newname"
-	! [ -f "$newname" ] && [ -z "$dry" ] && mv "$fname" "$newname"
+	
+	if ! [ -f "$newname" ]; then
+		echo "$fname -> $newname"
+		if [ -z "$dry" ]; then
+			mv "$fname" "$newname"
+		fi
+	fi
 done
-
